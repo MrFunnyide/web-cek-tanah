@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.jumbotron {
+    background-image: url("img/banner.svg");
+}
+.tujuan {
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    padding: 10px;
+}
+
+.titleBody {
+    background: linear-gradient(
+        269.52deg,
+        rgba(220, 95, 0, 0.4) -2.46%,
+        rgba(217, 72, 3, 0.509431) 24.26%,
+        rgba(213, 50, 5, 0.616093) 50.31%,
+        rgba(207, 10, 10, 0.81) 97.66%
+    );
+    color: white;
+}
+
+.formSurat {
+    background: linear-gradient(
+        266.25deg,
+        rgba(207, 10, 10, 0.81) 11.67%,
+        rgba(219, 87, 1, 0.727969) 75.75%,
+        rgba(220, 95, 0, 0.72) 81.98%
+    );
+    color: white;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    .suratAjuan {
+        flex-direction: column;
+        margin-left: 18%;
+    }
+    .ajuan {
+        margin-top: 20%;
+    }
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    /* .imageTrack {
+        flex-direction: column;
+    } */
+}

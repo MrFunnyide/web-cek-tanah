@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #edf9fc;
+}
+
+li {
+    padding: 10px;
+    list-style: none;
+    margin: 5px 0 10px 0;
+}
+.cap {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none !important;
+    font-weight: 600;
+}
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    margin-left: -300px;
+    transition: 0.4s;
+    background: linear-gradient(180deg, #53cde2 0%, #005792 63.85%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.active-main-content {
+    margin-left: 300px;
+}
+
+.active-sidebar {
+    margin-left: 0;
+}
+
+#main-content {
+    transition: 0.4s;
+}
+li:hover {
+    border-left: 2px solid whitesmoke;
+}
+.logout {
+    position: absolute;
+    bottom: 0;
+    /* right: 70px; */
+    /* padding-left: 10px; */
+}
+.active-content {
+    margin-left: 300px;
+}
+
+#content {
+    transition: 0.4s;
+}
+
+.nav-item {
+    padding-left: 100px;
+}
+
+#search::placeholder {
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+@media (max-width: 390px) {
+    .tambahTanah {
+        margin-top: 15px;
+    }
+
+    .active-content {
+        margin-left: 400px;
+    }
+}
