@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('templates.partials.head')
-    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-white" href="#">
+                    <a class="text-white" href="{{ route('surat.index') }}">
                         <i class="bi bi-envelope pe-1"></i>
                         SURAT
                     </a>

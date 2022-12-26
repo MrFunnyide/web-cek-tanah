@@ -107,20 +107,20 @@
                 <br>
                 <h5 class="fw-bold">Berkas</h5><hr>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Fotokopi KTP</label>
-                    <input class="form-control" type="file" id="Spengantar">
+                    <label for="fc_ktp" class="form-label">Fotokopi KTP</label>
+                    <input class="form-control" type="file" id="fc_ktp" name="fc_ktp">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Fotokopi KK</label>
-                    <input class="form-control" type="file" id="FcSDasatTanah">
+                    <label for="fc_kk" class="form-label">Fotokopi KK</label>
+                    <input class="form-control" type="file" id="fc_kk" name="fc_kk">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Surat Pernyataan (diketahui Rt/Rw)</label>
-                    <input class="form-control" type="file" id="FcKtp">
+                    <label for="fc_srtPernyataan" class="form-label">Surat Pernyataan (diketahui Rt/Rw)</label>
+                    <input class="form-control" type="file" id="fc_srtPernyataan" name="fc_srtPernyataan">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Fotokopi Tanda Lunas PBB Berjalan</label>
-                    <input class="form-control" type="file" id="FcKtp">
+                    <label for="fc_tandalunasPbb" class="form-label">Fotokopi Tanda Lunas PBB Berjalan</label>
+                    <input class="form-control" type="file" id="fc_tandalunasPbb" name="fc_tandalunasPbb">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

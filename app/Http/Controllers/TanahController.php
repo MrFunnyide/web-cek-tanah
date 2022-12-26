@@ -79,11 +79,27 @@ class TanahController extends Controller
             'longitude' => 'required'
 
         ]);
-        // $dataTanah = Tanah::findOrFail($id);
         $dataPemilik = PemilikTanah::findOrFail($id);
-
-        // $dataTanah->update($request->all());
-        $dataPemilik->update($request->all());
+        $dataPemilik->name = $request->name;
+        $dataPemilik->pekerjaan = $request->pekerjaan;
+        $dataPemilik->umur = $request->umur;
+        $dataPemilik->agama = $request->agama;
+        $dataPemilik->alamat = $request->alamat;
+        if ($dataPemilik->save()) {
+            # code...
+            $dataTanah = Tanah::findOrFail($id);
+            $dataTanah->SHM = $request->SHM;
+            $dataTanah->luas_tanah = $request->luas_tanah;
+            $dataTanah->alamat_tanah = $request->alamat_tanah;
+            $dataTanah->batasan_utara = $request->batasan_utara;
+            $dataTanah->batasan_timur = $request->batasan_timur;
+            $dataTanah->batasan_selatan = $request->batasan_selatan;
+            $dataTanah->batasan_barat = $request->batasan_barat;
+            $dataTanah->latitude = $request->latitude;
+            $dataTanah->longitude = $request->longitude;
+            $dataTanah->pemilik_tanah_id = $dataPemilik->id;
+        }
+        $dataTanah->save();
 
         session()->flash('info', 'Data berhasil diperbaharui');
 

@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pemohon', function (Blueprint $table) {
+        Schema::create('srt_berpenghasilan', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('pekerjaan');
-            $table->string('alamat');
-            $table->string('no_telp');
-            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->date('updated_at');
-            $table->date('created_at');
-
+            $table->index('pengajuan_id');
+            $table->foreignId('pengajuan_id')->nullable();
+            $table->string('fc_ktp');
+            $table->string('fc_kk');
+            $table->string('srt_pernyataan');
+            $table->string('fc_tanda_lunas_pbb');
+            $table->timestamps();
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemohon');
+        Schema::dropIfExists('srt_berpenghasilan');
     }
 };

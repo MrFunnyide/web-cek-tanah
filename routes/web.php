@@ -4,6 +4,8 @@ use App\Http\Controllers\AkunController;
 use App\Http\Controllers\TanahController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\srt_berpenghasilanController;
+use App\Models\srt_berpenghasilan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('warga.home');
-});
+})->name('home');
 
 Route::get('/login', function () {
     return view('login');
@@ -37,9 +39,22 @@ Route::get('/dataTanah', [TanahController::class, 'pemilik'])->name('dataTanah.p
 Route::get('/dataAkun', [AkunController::class, 'index'])->name('dataAkun.index');
 
 // route for arsip
-Route::get('/arsip', [ArsipController::class, 'index'])->name('arsip.index');
-Route::get('/create', [ArsipController::class, 'create'])->name('arsip.create');
+Route::get('/arsipdata', [ArsipController::class, 'index'])->name('arsip.index');
+Route::get('/arsipdata/create', [ArsipController::class, 'create'])->name('arsip.create');
+Route::post('/arsipdata', [ArsipController::class, 'store'])->name('arsipStore');
+Route::get('/delete_arsip/{id}', [ArsipController::class, 'delete_arsip'])->name('delete_arsip');
+Route::get('/edit_arsip/{id}', [ArsipController::class, 'edit'])->name('edit_arsip');
+Route::post('/update_arsip/{id}', [ArsipController::class, 'update'])->name('update_arsip');
 // Route::resource('arsip', ArsipController::class);
 
 // rooute for dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+// route surat
+Route::get('/surat', function () {
+    return view('surat.index');
+})->name('surat.index');
+
+
+// route surat berpenghasilan
+// Route::post('/surat/berpenghasilan', [srt_berpenghasilanController::class, 'store'])->name('surat.berpenghasilan.store');
