@@ -66,11 +66,8 @@ class ArsipController extends Controller
                 # code...
                 @unlink($destination);
             }
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('storage/', $filename);
-            $ubah->file_arsip = $filename;
+            $file = $request->file('file')->storeAs('arsip', 'arsip'.uniqid().'.'.$request->file('file')->extension());
+            $ubah->file_arsip = $file;
         }
 
         $ubah->save();
