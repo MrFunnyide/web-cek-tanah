@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('srt_berpenghasilan', function (Blueprint $table) {
             $table->id();
-            $table->index('pengajuan_id');
-            $table->foreignId('pengajuan_id')->nullable();
+            $table->index('pemohon_id');
+            $table->foreignId('pemohon_id')->nullable();
             $table->string('fc_ktp');
             $table->string('fc_kk');
             $table->string('srt_pernyataan');
             $table->string('fc_tanda_lunas_pbb');
+            $table->enum('status', ['diterima', 'ditolak', 'proses', 'selesai']);
             $table->timestamps();
         });
     }

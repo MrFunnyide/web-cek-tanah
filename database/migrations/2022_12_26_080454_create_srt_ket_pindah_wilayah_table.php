@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('srt_ket_pindah_wilayah', function (Blueprint $table) {
             $table->id();
-            $table->index('pengajuan_id');
-            $table->foreignId('pengajuan_id')->nullable();
+            $table->index('pemohon_id');
+            $table->foreignId('pemohon_id')->nullable();
             $table->string('srt_pernyataan');
             $table->string('srt_dasar_tanah');
             $table->string('fc_ktp');
+            $table->enum('status', ['diterima', 'ditolak', 'proses', 'selesai']);
             $table->timestamps();
         });
     }

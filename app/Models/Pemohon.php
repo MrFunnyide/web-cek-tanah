@@ -13,4 +13,13 @@ class Pemohon extends Model
 
     protected $table = "pemohon";
 
+    public function srt_berpenghasilan()
+    {
+        return $this->hasMany(srt_berpenghasilan::class);
+    }
+
+    public function srt_ket_pindah_wilayah()
+    {
+        return $this->hasMany(srt_ketPindahWilayah::class);
+    }
 }

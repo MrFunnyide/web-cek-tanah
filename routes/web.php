@@ -5,7 +5,7 @@ use App\Http\Controllers\TanahController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\srt_berpenghasilanController;
-use App\Models\srt_berpenghasilan;
+use App\Http\Controllers\srt_ketPindahWilayahController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,11 +50,16 @@ Route::post('/update_arsip/{id}', [ArsipController::class, 'update'])->name('upd
 // rooute for dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-// route surat
-Route::get('/surat', function () {
-    return view('surat.index');
-})->name('surat.index');
-
-
 // route surat berpenghasilan
-// Route::post('/surat/berpenghasilan', [srt_berpenghasilanController::class, 'store'])->name('surat.berpenghasilan.store');
+Route::post('/berpenghasilan', [srt_berpenghasilanController::class,  'store'])->name('berpenghasilan.store');
+
+// route surat pindah wilayah
+Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
+
+// route surat di dalam admin
+Route::get('/surat', [srt_berpenghasilanController::class, 'index'])->name('surat.index');
+Route::get('/surat/detailPenghasilan/{id}', [srt_berpenghasilanController::class, 'show'])->name('detail.surat');
+Route::get('/surat/edit/{id}', [srt_berpenghasilanController::class, 'edit'])->name('edit.surat');
+Route::post('/surat/editStts/{id}', [srt_berpenghasilanController::class, 'editStts'])->name('editStts');
+Route::delete('/surat/delete/{id}', [srt_berpenghasilanController::class, 'destroy'])->name('delete.surat');
+

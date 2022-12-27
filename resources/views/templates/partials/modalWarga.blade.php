@@ -7,17 +7,17 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body overflow-auto" style="height: 70vh;">
-                <form action="#" method="post">
+                <form action="{{ route('pindah_wilayah.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <h5 class="fw-bold">Data Diri</h5><hr>
                     <div class="mb-3">
-                        <label for="nama_lengkap" class="col-form-label">Nama Lengkap :</label>
-                        <input name="nama_lengkap" type="text" class="form-control form-control-sm" id="nama_lengkap"
+                        <label for="name" class="col-form-label">Nama Lengkap :</label>
+                        <input name="name" type="text" class="form-control form-control-sm" id="name"
                         required>
                     </div>
                     <div class="mb-3">
-                        <label for="nik" class="col-form-label">Pekerjaan :</label>
-                        <input name="nik" type="number" class="form-control form-control-sm" id="nik"
+                        <label for="pekerjaan" class="col-form-label">Pekerjaan :</label>
+                        <input name="pekerjaan" type="text" class="form-control form-control-sm" id="pekerjaan"
                         required>
                     </div>
                     <div class="mb-3">
@@ -26,8 +26,8 @@
                         id="alamat" required>
                     </div>
                     <div class="mb-3">
-                        <label for="no_hp" class="col-form-label">No Hp :</label>
-                        <input name="no_hp" type="number" class="form-control form-control-sm"
+                        <label for="no_telp" class="col-form-label">No Hp :</label>
+                        <input name="no_telp" type="number" class="form-control form-control-sm"
                         id="no_hp" required>
                     </div>
                     <div class="mb-3">
@@ -42,16 +42,16 @@
                 <br>
                 <h5 class="fw-bold">Berkas</h5><hr>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Surat Pengantar (Rt/Rw)</label>
-                    <input class="form-control" type="file" id="Spengantar">
+                    <label for="Spengantar" class="form-label">Surat Pengantar (Rt/Rw)</label>
+                    <input class="form-control" type="file" id="Spengantar" name="Spengantar">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Fotokopi Surat Dasar Tanah</label>
-                    <input class="form-control" type="file" id="FcSDasatTanah">
+                    <label for="FcSDasatTanah" class="form-label">Fotokopi Surat Dasar Tanah</label>
+                    <input class="form-control" type="file" id="FcSDasatTanah" name="FcSDasatTanah">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Fotokopi KTP Pemohon</label>
-                    <input class="form-control" type="file" id="FcKtp">
+                    <label for="fc_ktp" class="form-label">Fotokopi KTP Pemohon</label>
+                    <input class="form-control" type="file" id="fc_ktp" name="fc_ktp">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -72,17 +72,17 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body overflow-auto" style="height: 70vh;">
-                <form action="#" method="post">
+                <form action="{{ route('berpenghasilan.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <h5 class="fw-bold">Data Diri</h5><hr>
                     <div class="mb-3">
-                        <label for="nama_lengkap" class="col-form-label">Nama Lengkap :</label>
-                        <input name="nama_lengkap" type="text" class="form-control form-control-sm" id="nama_lengkap"
+                        <label for="name" class="col-form-label">Nama Lengkap :</label>
+                        <input name="name" type="text" class="form-control form-control-sm" id="name"
                         required>
                     </div>
                     <div class="mb-3">
-                        <label for="nik" class="col-form-label">Pekerjaan :</label>
-                        <input name="nik" type="number" class="form-control form-control-sm" id="nik"
+                        <label for="pekerjaan" class="col-form-label">Pekerjaan :</label>
+                        <input name="pekerjaan" type="text" class="form-control form-control-sm" id="pekerjaan"
                         required>
                     </div>
                     <div class="mb-3">
@@ -91,9 +91,9 @@
                         id="alamat" required>
                     </div>
                     <div class="mb-3">
-                        <label for="no_hp" class="col-form-label">No Hp :</label>
-                        <input name="no_hp" type="number" class="form-control form-control-sm"
-                        id="no_hp" required>
+                        <label for="no_telp" class="col-form-label">No Hp :</label>
+                        <input name="no_telp" type="number" class="form-control form-control-sm"
+                        id="no_telp" required>
                     </div>
                     <div class="mb-3">
                         <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin :</label>
@@ -115,8 +115,8 @@
                     <input class="form-control" type="file" id="fc_kk" name="fc_kk">
                 </div>
                 <div class="mb-3">
-                    <label for="fc_srtPernyataan" class="form-label">Surat Pernyataan (diketahui Rt/Rw)</label>
-                    <input class="form-control" type="file" id="fc_srtPernyataan" name="fc_srtPernyataan">
+                    <label for="srt_pernyataan" class="form-label">Surat Pernyataan (diketahui Rt/Rw)</label>
+                    <input class="form-control" type="file" id="srt_pernyataan" name="srt_pernyataan">
                 </div>
                 <div class="mb-3">
                     <label for="fc_tandalunasPbb" class="form-label">Fotokopi Tanda Lunas PBB Berjalan</label>
