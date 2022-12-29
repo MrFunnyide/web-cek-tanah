@@ -9,9 +9,9 @@
     <div>
         <div class="sidebar py-4 text-white" id="sidebar">
             <div class="text-center">
-                <img src="img/profile.svg" style="width: 120px">
-                <p class="cap">Aji Bayu Permadi</p>
-                <p class="cap mb-5">Staff</p>
+                <img src="/img/profile.svg" style="width: 120px">
+                <p class="cap mt-2"><a class="text-white fs-6" href="{{route('profile')}}">Aji Bayu Permadi</a></p>
+                <p class="cap fs-6 mb-4">Staff</p>
             </div>
             <div class="d-flex flex-column" >
                 <li class="nav-item">
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="text-white" href="{{ route('surat.index') }}">
+                    <a class="text-white" href="{{ route('dashboardSurat') }}">
                         <i class="bi bi-envelope pe-1"></i>
                         SURAT
                     </a>

@@ -13,11 +13,11 @@ $link = route('arsipStore');
                 @csrf
                 <div class="mb-3">
                     <label for="name_berkas" class="col-form-label">Nama Berkas :</label>
-                    <input name="name_berkas" type="text" class="form-control" id="name_berkas" name="name_berkas">
+                    <input name="name_berkas" type="text" class="form-control" id="name_berkas" name="name_berkas" required>
                 </div>
                 <div class="mb-3">
                     <label for="keterangan" class="col-form-label">Deskripsi :</label>
-                    <textarea name="keterangan" type="" class="form-control form-control-sm" id="keterangan" name="keterangan"></textarea>
+                    <textarea name="keterangan" type="" class="form-control form-control-sm" id="keterangan" name="keterangan" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="file" class="col-form-label">File :</label>

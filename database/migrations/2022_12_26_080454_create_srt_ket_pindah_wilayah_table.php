@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->index('pemohon_id');
             $table->foreignId('pemohon_id')->nullable();
-            $table->string('srt_pernyataan');
+            $table->string('srt_pengantar');
             $table->string('srt_dasar_tanah');
             $table->string('fc_ktp');
             $table->enum('status', ['diterima', 'ditolak', 'proses', 'selesai']);

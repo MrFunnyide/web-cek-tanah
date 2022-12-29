@@ -1,13 +1,13 @@
 @extends('templates.partials.sidebar')
 
 @php
-$title = 'Surat Masuk';
+$title = 'Surat Berpenghasilan';
 $link = route('surat.index');
 @endphp
 
 @section('content')
 <div class="container mt-5">
-    <div class="row input-group d-flex justify-content-around">
+    <div class="row input-group">
         <div class="col-lg-6">
             <form action="#" method="get">
                 <div class="d-flex">
@@ -17,13 +17,6 @@ $link = route('surat.index');
                         class="bi bi-search text-white"></i></button>
                     </div>
                 </form>
-            </div>
-            <div class="col-lg-auto">
-                <select name="agama" class="btn btn-primary" aria-label="Default select example" id="agama">
-                    <option selected disabled value="">Pilih Surat</option>
-                    <option value="Berpenghasilan">Surat Berpenghasilan</option>
-                    <option value="PindahWilayah" >Surat Pindah Wilayah</option>
-                </select>
             </div>
         </div>
         <div class="mt-4 table-responsive-lg">

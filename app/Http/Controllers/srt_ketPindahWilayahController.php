@@ -8,7 +8,37 @@ use Illuminate\Http\Request;
 
 class srt_ketPindahWilayahController extends Controller
 {
-    //
+    public function show($id)
+    {
+        $detailData = srt_ketPindahWilayah::findOrFail($id);
+        return view('surat.cekPw', compact('detailData'));
+    }
+    public function destroy($id)
+    // note , file belum ke hapus
+    {
+        $data = srt_ketPindahWilayah::findOrFail($id);
+        $pemohon = Pemohon::findOrFail($id);
+        $pemohon->delete();
+        $data->delete();
+        return redirect()->route('suratPw.index');
+    }
+    public function edit($id)
+    {
+        $detailData = srt_ketPindahWilayah::findOrFail($id);
+        return view('surat.editPw', compact('detailData'));
+    }
+    public function editStts(Request $request, $id)
+    {
+        $data = srt_ketPindahWilayah::findOrFail($id);
+        $data->status = $request->status;
+        $data->save();
+        return redirect()->route('suratPw.index');
+    }
+    public function index()
+    {
+        $data = srt_ketPindahWilayah::all();
+        return view('surat.indexPW', compact('data'));
+    }
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -23,7 +53,7 @@ class srt_ketPindahWilayahController extends Controller
         ]);
 
         $Spengantar = null;
-        $FcSDasatTanah = null;
+        $FcSDasarTanah = null;
         $fc_ktp = null;
 
         if ($request->hasFile('Spengantar')) {
@@ -31,7 +61,7 @@ class srt_ketPindahWilayahController extends Controller
         }
 
         if ($request->hasFile('FcSDasatTanah')) {
-            $FcSDasatTanah = $request->file('FcSDasatTanah')->storeAs('FcSDasatTanah', 'FcSDasatTanah'.uniqid().'.'.$request->file('FcSDasatTanah')->extension());
+            $FcSDasarTanah = $request->file('FcSDasatTanah')->storeAs('FcSDasatTanah', 'FcSDasatTanah'.uniqid().'.'.$request->file('FcSDasatTanah')->extension());
         }
 
         if ($request->hasFile('fc_ktp')) {
@@ -49,8 +79,8 @@ class srt_ketPindahWilayahController extends Controller
         $pemohon->save();
 
 
-        $data->srt_pernyataan = $Spengantar;
-        $data->srt_dasar_tanah = $FcSDasatTanah;
+        $data->srt_pengantar = $Spengantar;
+        $data->srt_dasar_tanah = $FcSDasarTanah;
         $data->fc_ktp = $fc_ktp;
         $data->status = 'diterima';
         $data->pemohon_id = $pemohon->id;

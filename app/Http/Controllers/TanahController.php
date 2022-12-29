@@ -109,8 +109,8 @@ class TanahController extends Controller
     // method delete
     public function destroy($id)
     {
-        $dataTanah = Tanah::findOrFail($id);
         $dataPemilik = PemilikTanah::findOrFail($id);
+        $dataTanah = Tanah::findOrFail($id);
         $dataTanah->delete();
         $dataPemilik->delete();
 

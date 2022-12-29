@@ -177,7 +177,7 @@ $link = route('dataTanah.pemilik');
                     <div class="mb-3">
                         <label for="SHM" class="col-form-label">Sertifikat Hak Milik :</label>
                         <input name="SHM" type="number" class="form-control form-control-sm" id="SHM"
-                        required value="{{$dataTanah->SHM}}">
+                        required disabled value="{{$dataTanah->SHM}}">
                     </div>
                     <div class="mb-3">
                         <label for="luas_tanah" class="col-form-label">Luas Tanah :</label>

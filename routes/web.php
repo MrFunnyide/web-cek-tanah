@@ -52,14 +52,27 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // route surat berpenghasilan
 Route::post('/berpenghasilan', [srt_berpenghasilanController::class,  'store'])->name('berpenghasilan.store');
-
-// route surat pindah wilayah
-Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
-
-// route surat di dalam admin
 Route::get('/surat', [srt_berpenghasilanController::class, 'index'])->name('surat.index');
 Route::get('/surat/detailPenghasilan/{id}', [srt_berpenghasilanController::class, 'show'])->name('detail.surat');
 Route::get('/surat/edit/{id}', [srt_berpenghasilanController::class, 'edit'])->name('edit.surat');
 Route::post('/surat/editStts/{id}', [srt_berpenghasilanController::class, 'editStts'])->name('editStts');
 Route::delete('/surat/delete/{id}', [srt_berpenghasilanController::class, 'destroy'])->name('delete.surat');
+
+// route surat pindah wilayah
+Route::get('/suratpw', [srt_ketPindahWilayahController::class, 'index'])->name('suratPw.index');
+Route::get('/suratpw/detailPindhWlyh/{id}', [srt_ketPindahWilayahController::class, 'show'])->name('detail.suratPw');
+Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
+Route::get('/suratpw/edit/{id}', [srt_ketPindahWilayahController::class, 'edit'])->name('edit.suratPw');
+Route::post('/suratpw/editStts/{id}', [srt_ketPindahWilayahController::class, 'editStts'])->name('editSttsPw');
+Route::delete('/suratpw/delete/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
+
+// route surat di dalam admin
+Route::get('/dashboardSurat', function() {
+    return view('surat.homeSurat');
+})->name('dashboardSurat');
+
+// profile
+Route::get('/profile', function() {
+    return view('Akun.profileAkun');
+})->name('profile');
 
