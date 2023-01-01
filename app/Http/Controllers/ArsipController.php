@@ -16,6 +16,13 @@ class ArsipController extends Controller
         ]);
     }
 
+    public function arsipLurah()
+    {
+        return view('lurah.arsip.arsipLurah', [
+            'arsip' => Arsip::all()
+        ]);
+    }
+
     public function create()
     {
         return view('arsip.create');

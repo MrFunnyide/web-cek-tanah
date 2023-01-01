@@ -39,7 +39,8 @@
             <h3 class="fw-bold mt-5">Selamat Datang</h3>
             <p class="fw-light mb-4" style="font-size: 12px">di aplikasi pelayanan KASIPEM</p>
             <img src="img/logo/Logo.svg" alt="logo" style="width: 25%">
-            <form action="" method="post"  class="my-5" >
+            <form action="{{ route('proses_login') }}" method="post"  class="my-5" >
+                @csrf
                 <div class="mb-3">
                     <input type="text" placeholder="Username" class="form-control w-75 mx-auto mx-sm-auto" name="username" id="username" required >
                 </div>

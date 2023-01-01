@@ -126,4 +126,12 @@ class TanahController extends Controller
         return view('dataTanah.index', ['pemilik' => $pemilik]);
 
     }
+
+    // for lurah
+    public function pemilikLurah()
+    {
+        $pemilik = PemilikTanah::all();
+        return view('lurah.dataTanahLurah.dataTanahLurah', ['pemilik' => $pemilik]);
+
+    }
 }

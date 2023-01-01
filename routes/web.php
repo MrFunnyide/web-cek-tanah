@@ -3,6 +3,7 @@
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\TanahController;
 use App\Http\Controllers\ArsipController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\srt_berpenghasilanController;
 use App\Http\Controllers\srt_ketPindahWilayahController;
@@ -23,53 +24,68 @@ Route::get('/', function () {
     return view('warga.home');
 })->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login_proses', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// auth
+// auth -> staff || lurah
+Route::group(['middleware' =>['auth']], function() {
+    Route::group(['middleware' => ['cekLogin:staff']], function(){
+        // rooute for dashboard
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-// operasi data tanah
-Route::post('/dataTanah', [TanahController::class, 'store'])->name('dataTanah.store');
-Route::post('/dataTanah/{id}', [TanahController::class, 'update'])->name('dataTanah.update');
-Route::delete('/dataTanah/{id}', [TanahController::class, 'destroy'])->name('dataTanah.destroy');
-Route::get('/dataTanah', [TanahController::class, 'pemilik'])->name('dataTanah.pemilik');
-// Route::resource('dataTanah', TanahController::class);
+        // operasi data tanah
+        Route::post('/dataTanah', [TanahController::class, 'store'])->name('dataTanah.store');
+        Route::post('/dataTanah/{id}', [TanahController::class, 'update'])->name('dataTanah.update');
+        Route::delete('/dataTanah/{id}', [TanahController::class, 'destroy'])->name('dataTanah.destroy');
+        Route::get('/dataTanah', [TanahController::class, 'pemilik'])->name('dataTanah.pemilik');
+        // Route::resource('dataTanah', TanahController::class);
 
-// router for data akun
-Route::get('/dataAkun', [AkunController::class, 'index'])->name('dataAkun.index');
+        // router for data akun
+        Route::get('/dataAkun', [AkunController::class, 'index'])->name('dataAkun.index');
 
-// route for arsip
-Route::get('/arsipdata', [ArsipController::class, 'index'])->name('arsip.index');
-Route::get('/arsipdata/create', [ArsipController::class, 'create'])->name('arsip.create');
-Route::post('/arsipdata', [ArsipController::class, 'store'])->name('arsipStore');
-Route::get('/delete_arsip/{id}', [ArsipController::class, 'delete_arsip'])->name('delete_arsip');
-Route::get('/edit_arsip/{id}', [ArsipController::class, 'edit'])->name('edit_arsip');
-Route::post('/update_arsip/{id}', [ArsipController::class, 'update'])->name('update_arsip');
-// Route::resource('arsip', ArsipController::class);
+        // route for arsip
+        Route::get('/arsipdata', [ArsipController::class, 'index'])->name('arsip.index');
+        Route::get('/arsipdata/create', [ArsipController::class, 'create'])->name('arsip.create');
+        Route::post('/arsipdata', [ArsipController::class, 'store'])->name('arsipStore');
+        Route::get('/delete_arsip/{id}', [ArsipController::class, 'delete_arsip'])->name('delete_arsip');
+        Route::get('/edit_arsip/{id}', [ArsipController::class, 'edit'])->name('edit_arsip');
+        Route::post('/update_arsip/{id}', [ArsipController::class, 'update'])->name('update_arsip');
 
-// rooute for dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+        // route surat berpenghasilan
+        Route::post('/berpenghasilan', [srt_berpenghasilanController::class,  'store'])->name('berpenghasilan.store');
+        Route::get('/surat', [srt_berpenghasilanController::class, 'index'])->name('surat.index');
+        Route::get('/surat/detailPenghasilan/{id}', [srt_berpenghasilanController::class, 'show'])->name('detail.surat');
+        Route::get('/surat/edit/{id}', [srt_berpenghasilanController::class, 'edit'])->name('edit.surat');
+        Route::post('/surat/editStts/{id}', [srt_berpenghasilanController::class, 'editStts'])->name('editStts');
+        Route::delete('/surat/delete/{id}', [srt_berpenghasilanController::class, 'destroy'])->name('delete.surat');
 
-// route surat berpenghasilan
-Route::post('/berpenghasilan', [srt_berpenghasilanController::class,  'store'])->name('berpenghasilan.store');
-Route::get('/surat', [srt_berpenghasilanController::class, 'index'])->name('surat.index');
-Route::get('/surat/detailPenghasilan/{id}', [srt_berpenghasilanController::class, 'show'])->name('detail.surat');
-Route::get('/surat/edit/{id}', [srt_berpenghasilanController::class, 'edit'])->name('edit.surat');
-Route::post('/surat/editStts/{id}', [srt_berpenghasilanController::class, 'editStts'])->name('editStts');
-Route::delete('/surat/delete/{id}', [srt_berpenghasilanController::class, 'destroy'])->name('delete.surat');
+        // route surat pindah wilayah
+        Route::get('/suratpw', [srt_ketPindahWilayahController::class, 'index'])->name('suratPw.index');
+        Route::get('/suratpw/detailPindhWlyh/{id}', [srt_ketPindahWilayahController::class, 'show'])->name('detail.suratPw');
+        Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
+        Route::get('/suratpw/edit/{id}', [srt_ketPindahWilayahController::class, 'edit'])->name('edit.suratPw');
+        Route::post('/suratpw/editStts/{id}', [srt_ketPindahWilayahController::class, 'editStts'])->name('editSttsPw');
+        Route::delete('/suratpw/delete/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
 
-// route surat pindah wilayah
-Route::get('/suratpw', [srt_ketPindahWilayahController::class, 'index'])->name('suratPw.index');
-Route::get('/suratpw/detailPindhWlyh/{id}', [srt_ketPindahWilayahController::class, 'show'])->name('detail.suratPw');
-Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
-Route::get('/suratpw/edit/{id}', [srt_ketPindahWilayahController::class, 'edit'])->name('edit.suratPw');
-Route::post('/suratpw/editStts/{id}', [srt_ketPindahWilayahController::class, 'editStts'])->name('editSttsPw');
-Route::delete('/suratpw/delete/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
+        // route surat di dalam admin
+        Route::get('/dashboardSurat', function() {
+            return view('surat.homeSurat');
+        })->name('dashboardSurat');
+    });
+    Route::group(['middleware' => ['cekLogin:lurah']], function(){
+        // rooute for dashboard lurah
+        Route::get('/dashboardLurah', [DashboardController::class, 'indexLurah'])->name('dashboardLurah.index');
 
-// route surat di dalam admin
-Route::get('/dashboardSurat', function() {
-    return view('surat.homeSurat');
-})->name('dashboardSurat');
+        // data tanah lurah
+        Route::get('/dataTanahLurah', [TanahController::class, 'pemilikLurah'])->name('dataTanahLurah.pemilik');
+
+        // data arsip lurah
+        Route::get('/arsipdataLurah', [ArsipController::class, 'arsipLurah'])->name('arsip.indexLurah');
+
+    });
+});
 
 // profile
 Route::get('/profile', function() {

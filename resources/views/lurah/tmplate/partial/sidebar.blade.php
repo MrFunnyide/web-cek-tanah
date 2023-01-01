@@ -1,53 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="style/styles.css">
     @include('templates.partials.head')
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 
 <body>
     <div>
-        <div class="sidebar p-4 text-center text-white" id="sidebar">
-            <img src="img/profile.svg" style="width: 120px">
-            <p class="cap">Aji Bayu Permadi</p>
-            <p class="cap mb-5">Staff</p>
-            <li>
-                <a class="text-white" href="#">
-                    <i class="bi bi-house mr-2 pe-1"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li>
-                <a class="text-white" href="{{ route('dataTanah.pemilik') }}">
-                    <i class="bi bi-clipboard-data pe-1"></i>
-                    Data Tanah
-                </a>
-            </li>
-            <li>
-                <a class="text-white" href="#">
-                    <i class="bi bi-envelope pe-1"></i>
-                    Surat
-                </a>
-            </li>
-            <li>
-                <a class="text-white" href="#">
-                    <i class="bi bi-archive pe-1"></i>
-                    Arsip
-                </a>
-            </li>
-            <li>
-                <a class="text-white" href="{{ route('dataAkun.index') }}">
-                    <i class="bi bi-person-badge pe-1"></i>
-                    Akun
-                </a>
-            </li>
-            <li class="logout">
-                <a class="text-white" href="#">
-                    <i class="bi bi-box-arrow-left pe-1"></i>
-                    Log Out
-                </a>
-            </li>
+        <div class="sidebar py-4 text-white" id="sidebar">
+            <div class="text-center">
+                <img src="/img/profile.svg" style="width: 120px">
+                <p class="cap mt-2"><a class="text-white fs-6" href="{{route('profile')}}">Aji Bayu Permadi</a></p>
+                <p class="cap fs-6 mb-4">Staff</p>
+            </div>
+            <div class="d-flex flex-column" >
+                <li class="nav-item">
+                    <a class="text-white" href="{{ route('dashboardLurah.index') }}">
+                        <i class="bi bi-house mr-2 pe-1"></i>
+                        DASHBOARD
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-white" href="{{ route('dataTanahLurah.pemilik') }}">
+                        <i class="bi bi-clipboard-data pe-1"></i>
+                        DATA TANAH
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-white" href="{{route('arsip.indexLurah')}}">
+                        <i class="bi bi-clipboard-data pe-1"></i>
+                        ARSIP
+                    </a>
+                </li>
+                <li class="nav-item logout">
+                    <button class="btn btn-primary-outline p-0 text-white fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#ModalDelete">
+                        <i class="bi bi-box-arrow-left pe-1"></i>
+                        LOG OUT
+                    </button>
+                </li>
+            </div>
+        </div>
+    </div>
+        <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    Apakah kamu yakin ingin keluar ?
+                </div>
+                <form action="{{ route('logout') }}" method="get">
+                    @csrf
+                    <div class="modal-footer d-flex justify-content-center">
+                        <input type="submit" value="Iya" class="btn btn-danger me-5">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="d-flex p-3 border-bottom border-info" id="main-content">
@@ -57,7 +66,7 @@
             </button>
         </div>
         <div class="ps-3 pt-2 w-100">
-            <h5 class="fw-bold">{{ $title ?? 'App-Page' }}</h5>
+            <h5 class="fw-bold"><a href="{{ $link ?? '#' }}">{{ $title ?? 'App-Page' }}</a></h5>
         </div>
         <div>
             <img src="/img/logo/Logo.svg" style="width: 50px">
