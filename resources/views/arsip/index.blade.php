@@ -14,14 +14,14 @@ $link = route('arsip.index');
                     <input style="background: #0478c5;" class="form-control text-white" id="search" type="search"
                     name="search" placeholder="Search">
                     <button class="btn position-relative" style="right: 10%"><i
-                    class="bi bi-search text-white"></i></button>
-                </div>
-            </form>
+                        class="bi bi-search text-white"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-5">
+                <a href="{{route('arsip.create')}}" type="button" class="btn text-white tambahTanah" style="background: #0478c5">Tambah Berkas<i class="bi bi-folder-plus ps-2"></i> </a>
+            </div>
         </div>
-        <div class="mt-5">
-            <a href="{{route('arsip.create')}}" type="button" class="btn text-white tambahTanah" style="background: #0478c5">Tambah Berkas<i class="bi bi-folder-plus ps-2"></i> </a>
-        </div>
-    </div>
 
         @if(session()->has('succes'))
         <div class="alert alert-success mt-3">
@@ -48,20 +48,40 @@ $link = route('arsip.index');
                         </td>
                         <td>{{$data->deskripsi_arsip}}</td>
                         <td class="d-flex justify-content-center">
-                            <a href="{{ asset('storage/' . $data->file_arsip) }}" class="btn btn-sm btn-secondary me-3">Lihat</a>
+                            <a href="{{ asset('storage/' . $data->file_arsip) }}" class="btn btn-secondary me-3">Lihat</a>
 
                             <form action="{{ route('edit_arsip', $data->id) }}" method="get" class="me-3">
                                 @csrf
-                                <input type="submit" value="Edit" class="btn btn-sm btn-warning">
+                                <input type="submit" value="Edit" class="btn btn-warning">
                             </form>
 
-                            <a href="{{ route('delete_arsip', $data->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#ModalDelete{{ $data->id }}">Hapus</button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @foreach ($arsip as $data)
+        <div class="modal fade" id="ModalDelete{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        Apakah kamu yakin ingin menghapus data ?
+                    </div>
+                    <form action="{{ route('delete_arsip', $data->id) }}" method="get">
+                        @csrf
+                        <div class="modal-footer d-flex justify-content-center">
+                            <input type="submit" value="Hapus" class="btn btn-danger me-5">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
     @endsection
 

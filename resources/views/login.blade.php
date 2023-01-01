@@ -49,6 +49,8 @@
                 </div>
                 <div class="mb-3">
                     <input type="submit" class="btn text-white fw-bold border-white w-50" value="Login" style="background: linear-gradient(180deg, #53CDE2 0%, #005792 100%);">
+                    <br>
+                    <a class=" mt-3 btn text-white fw-bold border-white w-25" href="{{route('home')}}" style="background: linear-gradient(180deg, #53CDE2 0%, #005792 100%);">Back</a>
                 </div>
             </form>
         </div>
