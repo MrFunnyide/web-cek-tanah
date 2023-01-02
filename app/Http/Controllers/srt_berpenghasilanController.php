@@ -62,7 +62,7 @@ class srt_berpenghasilanController extends Controller
 
         $data->save();
 
-        return redirect()->route('home');
+        return redirect()->intended('/');
     }
 
     public function index()

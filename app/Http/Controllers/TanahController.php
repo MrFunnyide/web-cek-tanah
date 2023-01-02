@@ -98,11 +98,9 @@ class TanahController extends Controller
             $dataTanah->latitude = $request->latitude;
             $dataTanah->longitude = $request->longitude;
             $dataTanah->pemilik_tanah_id = $dataPemilik->id;
+            $dataTanah->save();
+            session()->flash('info', 'Data berhasil diperbaharui');
         }
-        $dataTanah->save();
-
-        session()->flash('info', 'Data berhasil diperbaharui');
-
         return redirect()->route('dataTanah.pemilik');
     }
 

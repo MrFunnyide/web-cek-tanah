@@ -39,37 +39,34 @@ $link = route('suratPw.index');
                         <td scope="row" class="d-flex justify-content-center">
                             <a href="{{ route('detail.suratPw' , $dataAll->id ) }}" class="btn btn-sm btn-secondary me-3">cek</a>
                             <a href="{{ route('edit.suratPw', $dataAll->id) }}" class="btn btn-sm text-white btn-warning me-3">edit</a>
-                            <button href="#" data-bs-toggle="modal"
-                        data-bs-target="#ModalDelete{{ $dataAll->id }}" class="btn btn-sm btn-danger">Hapus</button>
+                            <button data-bs-toggle="modal"
+                            data-bs-target="#ModalDelete{{ $dataAll->id }}" class="btn btn-sm btn-danger">Hapus</button>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{-- Modal Hapus --}}
-            @foreach ($data as $ $dataAll)
-            <div class="modal fade" id="ModalDelete{{ $dataAll->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body text-center">
-                            Apakah kamu yakin ingin menghapus data ?
-                        </div>
-                        <form action="{{ route('delete.suratPw', $dataAll->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <div class="modal-footer d-flex justify-content-center">
-                                <input type="submit" value="Hapus" class="btn btn-danger me-5">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            @endforeach
         </div>
     </div>
-
+    @foreach ($data as $dataAll)
+    <div class="modal fade" id="ModalDelete{{ $dataAll->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    Apakah kamu yakin ingin menghapus data ?
+                </div>
+                <form action="{{ route('delete.suratPw', $dataAll->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-footer d-flex justify-content-center">
+                        <input type="submit" value="Hapus" class="btn btn-danger me-5">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
 </div>
-
 @endsection

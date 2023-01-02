@@ -38,12 +38,12 @@
                         ARSIP
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="text-white" href="{{ route('dataAkun.index') }}">
                         <i class="bi bi-person-badge pe-1"></i>
                         AKUN
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item logout">
                     <button class="btn btn-primary-outline p-0 text-white fw-bold" data-bs-toggle="modal"
                     data-bs-target="#ModalDelete">

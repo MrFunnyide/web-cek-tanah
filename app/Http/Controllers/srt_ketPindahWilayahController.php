@@ -16,8 +16,8 @@ class srt_ketPindahWilayahController extends Controller
     public function destroy($id)
     // note , file belum ke hapus
     {
-        $data = srt_ketPindahWilayah::findOrFail($id);
         $pemohon = Pemohon::findOrFail($id);
+        $data = srt_ketPindahWilayah::findOrFail($id);
         $pemohon->delete();
         $data->delete();
         return redirect()->route('suratPw.index');

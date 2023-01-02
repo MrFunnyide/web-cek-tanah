@@ -28,6 +28,15 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login_proses', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::post('/berpenghasilan', [srt_berpenghasilanController::class,  'store'])->name('berpenghasilan.store');
+Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
+
+
+// profile
+Route::get('/profile', function() {
+    return view('Akun.profileAkun');
+})->name('profile');
+
 // auth
 // auth -> staff || lurah
 Route::group(['middleware' =>['auth']], function() {
@@ -42,9 +51,6 @@ Route::group(['middleware' =>['auth']], function() {
         Route::get('/dataTanah', [TanahController::class, 'pemilik'])->name('dataTanah.pemilik');
         // Route::resource('dataTanah', TanahController::class);
 
-        // router for data akun
-        Route::get('/dataAkun', [AkunController::class, 'index'])->name('dataAkun.index');
-
         // route for arsip
         Route::get('/arsipdata', [ArsipController::class, 'index'])->name('arsip.index');
         Route::get('/arsipdata/create', [ArsipController::class, 'create'])->name('arsip.create');
@@ -54,25 +60,25 @@ Route::group(['middleware' =>['auth']], function() {
         Route::post('/update_arsip/{id}', [ArsipController::class, 'update'])->name('update_arsip');
 
         // route surat berpenghasilan
-        Route::post('/berpenghasilan', [srt_berpenghasilanController::class,  'store'])->name('berpenghasilan.store');
         Route::get('/surat', [srt_berpenghasilanController::class, 'index'])->name('surat.index');
         Route::get('/surat/detailPenghasilan/{id}', [srt_berpenghasilanController::class, 'show'])->name('detail.surat');
         Route::get('/surat/edit/{id}', [srt_berpenghasilanController::class, 'edit'])->name('edit.surat');
         Route::post('/surat/editStts/{id}', [srt_berpenghasilanController::class, 'editStts'])->name('editStts');
         Route::delete('/surat/delete/{id}', [srt_berpenghasilanController::class, 'destroy'])->name('delete.surat');
 
-        // route surat pindah wilayah
-        Route::get('/suratpw', [srt_ketPindahWilayahController::class, 'index'])->name('suratPw.index');
-        Route::get('/suratpw/detailPindhWlyh/{id}', [srt_ketPindahWilayahController::class, 'show'])->name('detail.suratPw');
-        Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])->name('pindah_wilayah.store');
-        Route::get('/suratpw/edit/{id}', [srt_ketPindahWilayahController::class, 'edit'])->name('edit.suratPw');
-        Route::post('/suratpw/editStts/{id}', [srt_ketPindahWilayahController::class, 'editStts'])->name('editSttsPw');
-        Route::delete('/suratpw/delete/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
-
         // route surat di dalam admin
         Route::get('/dashboardSurat', function() {
             return view('surat.homeSurat');
         })->name('dashboardSurat');
+
+        // route surat pindah wilayah
+        Route::get('/suratpw', [srt_ketPindahWilayahController::class, 'index'])->name('suratPw.index');
+        Route::get('/suratpw/detailPindhWlyh/{id}', [srt_ketPindahWilayahController::class, 'show'])->name('detail.suratPw');
+        Route::get('/suratpw/edit/{id}', [srt_ketPindahWilayahController::class, 'edit'])->name('edit.suratPw');
+        Route::post('/suratpw/editStts/{id}', [srt_ketPindahWilayahController::class, 'editStts'])->name('editSttsPw');
+        Route::delete('/suratpw/delete/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
+
+
     });
     Route::group(['middleware' => ['cekLogin:lurah']], function(){
         // rooute for dashboard lurah
@@ -87,8 +93,4 @@ Route::group(['middleware' =>['auth']], function() {
     });
 });
 
-// profile
-Route::get('/profile', function() {
-    return view('Akun.profileAkun');
-})->name('profile');
 
