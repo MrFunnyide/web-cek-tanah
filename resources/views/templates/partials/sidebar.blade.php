@@ -10,7 +10,7 @@
         <div class="sidebar py-4 text-white" id="sidebar">
             <div class="text-center">
                 <img src="/img/profile.svg" style="width: 120px">
-                <p class="cap mt-2"><a class="text-white fs-6" href="{{route('profile')}}">Aji Bayu Permadi</a></p>
+                <p class="cap mt-2"><a class="text-white fs-6" href="{{route('profile')}}">Staff</a></p>
                 <p class="cap fs-6 mb-4">Staff</p>
             </div>
             <div class="d-flex flex-column" >
