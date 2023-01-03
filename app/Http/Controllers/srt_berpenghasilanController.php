@@ -92,12 +92,11 @@ class srt_berpenghasilanController extends Controller
     }
 
     public function destroy($id)
-    // note , file belum ke hapus
     {
         $data = srt_berpenghasilan::findOrFail($id);
-        $pemohon = Pemohon::findOrFail($id);
-        $pemohon->delete();
+        $pemohon = Pemohon::findOrFail($data->pemohon_id);
         $data->delete();
+        $pemohon->delete();
         return redirect()->route('surat.index');
     }
 }

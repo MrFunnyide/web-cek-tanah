@@ -14,12 +14,11 @@ class srt_ketPindahWilayahController extends Controller
         return view('surat.cekPw', compact('detailData'));
     }
     public function destroy($id)
-    // note , file belum ke hapus
     {
-        $pemohon = Pemohon::findOrFail($id);
         $data = srt_ketPindahWilayah::findOrFail($id);
-        $pemohon->delete();
+        $pemohon = Pemohon::findOrFail($data->pemohon_id);
         $data->delete();
+        $pemohon->delete();
         return redirect()->route('suratPw.index');
     }
     public function edit($id)

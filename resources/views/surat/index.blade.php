@@ -56,7 +56,7 @@ $link = route('surat.index');
                 <div class="modal-body text-center">
                     Apakah kamu yakin ingin menghapus data ?
                 </div>
-                <form action="{{ route('delete.surat', $dataAll->id) }}" method="post">
+                <form action="{{ route('surat.destroy', $dataAll->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer d-flex justify-content-center">

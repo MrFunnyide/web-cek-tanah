@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\srt_berpenghasilanController;
 use App\Http\Controllers\srt_ketPindahWilayahController;
+use App\Models\srt_ketPindahWilayah;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,7 +50,6 @@ Route::group(['middleware' =>['auth']], function() {
         Route::post('/dataTanah/{id}', [TanahController::class, 'update'])->name('dataTanah.update');
         Route::delete('/dataTanah/{id}', [TanahController::class, 'destroy'])->name('dataTanah.destroy');
         Route::get('/dataTanah', [TanahController::class, 'pemilik'])->name('dataTanah.pemilik');
-        // Route::resource('dataTanah', TanahController::class);
 
         // route for arsip
         Route::get('/arsipdata', [ArsipController::class, 'index'])->name('arsip.index');
@@ -64,7 +64,7 @@ Route::group(['middleware' =>['auth']], function() {
         Route::get('/surat/detailPenghasilan/{id}', [srt_berpenghasilanController::class, 'show'])->name('detail.surat');
         Route::get('/surat/edit/{id}', [srt_berpenghasilanController::class, 'edit'])->name('edit.surat');
         Route::post('/surat/editStts/{id}', [srt_berpenghasilanController::class, 'editStts'])->name('editStts');
-        Route::delete('/surat/delete/{id}', [srt_berpenghasilanController::class, 'destroy'])->name('delete.surat');
+        Route::resource('surat', srt_berpenghasilanController::class);
 
         // route surat di dalam admin
         Route::get('/dashboardSurat', function() {
@@ -76,7 +76,9 @@ Route::group(['middleware' =>['auth']], function() {
         Route::get('/suratpw/detailPindhWlyh/{id}', [srt_ketPindahWilayahController::class, 'show'])->name('detail.suratPw');
         Route::get('/suratpw/edit/{id}', [srt_ketPindahWilayahController::class, 'edit'])->name('edit.suratPw');
         Route::post('/suratpw/editStts/{id}', [srt_ketPindahWilayahController::class, 'editStts'])->name('editSttsPw');
-        Route::delete('/suratpw/delete/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
+        Route::delete('/suratpw/destroy/{id}', [srt_ketPindahWilayahController::class, 'destroy'])->name('delete.suratPw');
+        // Route::resource('suratpw', srt_ketPindahWilayahController::class);
+
 
 
     });

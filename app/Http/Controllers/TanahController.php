@@ -85,6 +85,7 @@ class TanahController extends Controller
         $dataPemilik->umur = $request->umur;
         $dataPemilik->agama = $request->agama;
         $dataPemilik->alamat = $request->alamat;
+        // $dataPemilik->save();
         if ($dataPemilik->save()) {
             # code...
             $dataTanah = Tanah::findOrFail($id);
@@ -98,9 +99,9 @@ class TanahController extends Controller
             $dataTanah->latitude = $request->latitude;
             $dataTanah->longitude = $request->longitude;
             $dataTanah->pemilik_tanah_id = $dataPemilik->id;
-            $dataTanah->save();
-            session()->flash('info', 'Data berhasil diperbaharui');
         }
+        $dataTanah->save();
+        session()->flash('info', 'Data berhasil diperbaharui');
         return redirect()->route('dataTanah.pemilik');
     }
 
