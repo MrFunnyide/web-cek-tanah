@@ -29,6 +29,11 @@
     </div>
     {{-- pelayanan --}}
     <div id="pelayanan">
+        @if (session()->has('success'))
+        <div class="container alert alert-success" role="alert">
+            {{ session()->get('success')}}</p>
+        </div>
+        @endif
         <div>
             <h5 class="text-center py-3 titleBody">PELAYANAN</h5>
         </div>
@@ -48,7 +53,9 @@
                 </div>
             </div>
         </div>
+
     </div>
+
     @include('templates.partials.modalWarga')
     <div id="tracking">
         <div>
@@ -72,10 +79,11 @@
                 </div>
             </div>
             <br>
-            <form>
+            <form action="{{route('search')}}" method="GET">
+                @csrf
                 <div class="mb-3">
-                    <label for="id_pengajuan" class="form-label">Masukkan Id Pengajuan</label>
-                    <input type="id_pengajuan" class="form-control" id="id_pengajuan" aria-describedby="id_pengajuan" name="id_pengajuan">
+                    <label for="search" class="form-label">Masukkan Id Pengajuan</label>
+                    <input type="search" class="form-control" id="search" aria-describedby="search" name="search">
                 </div>
                 <button type="submit" class="btn btn-primary">Lacak Surat</button>
             </form>
@@ -88,14 +96,16 @@
                         <th>Status</th>
                     </tr>
                 </thead>
+                {{-- @foreach ($pemohon as $pangaju) --}}
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>123456789</td>
-                        <td>12-12-2021</td>
-                        <td>Selesai</td>
+                        <td>1</td>
+                        <td>Ahmad Yani</td>
+                        <td><a href="#">status</a></td>
                     </tr>
                 </tbody>
+                {{-- @endforeach --}}
             </table>
         </div>
     </div>

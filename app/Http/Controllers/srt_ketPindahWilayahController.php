@@ -85,6 +85,8 @@ class srt_ketPindahWilayahController extends Controller
         $data->pemohon_id = $pemohon->id;
         $data->save();
 
+        session()->flash('success', 'pengajuan berhasil, ini id anda' . ' ' . $pemohon->id);
+
         return redirect()->route('home');
 
     }

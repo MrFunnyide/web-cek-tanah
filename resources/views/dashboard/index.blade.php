@@ -9,15 +9,15 @@ $link = route('dashboard.index');
 <div class="container d-flex flex-wrap">
     <div class="m-5 shadow bg-primary text-white card d-flex flex-column justify-content-center align-items-center" style="width: 15rem; height: 10rem;">
         <h6>Data Tanah</h6>
-        <p>Jumlah : 5 </p>
+        <p>Jumlah : {{$jumlahTanah}}</p>
     </div>
     <div class="m-5 shadow bg-primary text-white card d-flex flex-column justify-content-center align-items-center" style="width: 15rem; height: 10rem;">
         <h6>Arsip</h6>
-        <p>Jumlah : 5 </p>
+        <p>Jumlah : {{$jumlahArsip}} </p>
     </div>
     <div class="m-5 shadow bg-primary text-white card d-flex flex-column justify-content-center align-items-center" style="width: 15rem; height: 10rem;">
         <h6>Surat Masuk</h6>
-        <p>Jumlah : 5 </p>
+        <p>Jumlah : {{$jumlahSrt}} </p>
     </div>
 </div>
 <div class="container d-flex flex-column align-items-center">

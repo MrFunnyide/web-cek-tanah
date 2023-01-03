@@ -62,7 +62,15 @@ class srt_berpenghasilanController extends Controller
 
         $data->save();
 
+        session()->flash('success', 'pengajuan berhasil, ini id anda ' . ' ' . $pemohon->id);
+
         return redirect()->intended('/');
+    }
+
+    public function indexHomeWarga()
+    {
+        $data = Pemohon::all();
+        return view('warga.home', compact('dataWarga'));
     }
 
     public function index()
@@ -99,4 +107,16 @@ class srt_berpenghasilanController extends Controller
         $pemohon->delete();
         return redirect()->route('surat.index');
     }
+
+    public function search(Request $request)
+    {
+        if($request->has('search')){
+            $pemohon = Pemohon::where('id', 'like', '%'.$request->search.'%')->get();
+        } else {
+            $pemohon = Pemohon::all();
+        }
+
+        return view('warga.home', compact('pemohon'));
+    }
+
 }

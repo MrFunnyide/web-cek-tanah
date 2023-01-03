@@ -5,6 +5,7 @@ use App\Http\Controllers\TanahController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\srt_berpenghasilanController;
 use App\Http\Controllers\srt_ketPindahWilayahController;
 use App\Models\srt_ketPindahWilayah;
@@ -25,6 +26,7 @@ Route::get('/', function () {
     return view('warga.home');
 })->name('home');
 
+
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login_proses', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -37,6 +39,9 @@ Route::post('/pindahwilayah', [srt_ketPindahWilayahController::class, 'store'])-
 Route::get('/profile', function() {
     return view('Akun.profileAkun');
 })->name('profile');
+
+//search
+Route::get('/search', [srt_berpenghasilanController::class, 'search'])->name('search');
 
 // auth
 // auth -> staff || lurah

@@ -219,12 +219,12 @@ $link = route('dataTanah.pemilik');
                         <input name="longitude" type="number" class="form-control form-control-sm" id="longitude"
                         required value="{{$dataTanah->longitude}}">
                     </div>
-                    @endforeach
                     <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
+                    @endforeach
                 </form>
             </div>
         </div>
